@@ -52,6 +52,12 @@ if platform.startswith('macosx'):
         # only add sysroot if it exists:
         UNIVERSAL = "-isysroot %s %s" % (SDK, UNIVERSAL)
 
+# BMM: patch it to ignore the above, because the check doesn't work for me.
+# On my OSX 10.8.1 laptop, get_platforms returns 10.5 and it tries and fails to
+# build ppc binaries.
+UNIVERSAL = '-arch i386 -arch x86_64'
+
+
 # Since we have the latest readline (post 4.2), enable all readline functionality
 # These macros can be found in pyconfig.h.in in the main directory of the Python tarball
 DEFINE_MACROS = [
